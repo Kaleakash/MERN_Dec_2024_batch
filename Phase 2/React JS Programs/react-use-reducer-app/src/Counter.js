@@ -1,5 +1,5 @@
 import {useReducer} from 'react';
-
+//import { initialState,reducer } from './reducer';
 let initialState = {        // initialState is a object ref which can hold any type of variable. 
     count:0,
     name:"Akash Kale"
@@ -19,7 +19,6 @@ function reducer(state,action){
     }
     return state;
 }
-
 function Counter() {
 let [state,dispatch] = useReducer(reducer,initialState);
     return(

@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import ProductView from './ProductView';
 import SearchProduct from './SearchProduct';
+import UseEffectExample from './UseEffectExample';
 
 function App() {
   return (
@@ -10,6 +11,8 @@ function App() {
       <ProductView></ProductView>
       <hr/>
       <SearchProduct></SearchProduct>
+      <hr/>
+      <UseEffectExample></UseEffectExample>
     </div>
   );
 }

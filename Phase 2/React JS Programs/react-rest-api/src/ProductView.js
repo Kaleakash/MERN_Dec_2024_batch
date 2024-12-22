@@ -1,7 +1,11 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 function ProductView() {
 let [products,setProducts]=useState([]);
+useEffect(()=> {
+    loadAllProducts();
+},[]);
+
 let loadAllProducts = function() {
     // it is use to display product on browser console 
    // axios.get("https://fakestoreapi.com/products").
@@ -14,7 +18,7 @@ let loadAllProducts = function() {
     return(
         <div>
             <h3>View All Products</h3>
-            <input type="button" value="Load Product" onClick={loadAllProducts}/>
+           
             <br/>
             <p>Number of products {products.length}</p>
             {

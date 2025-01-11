@@ -11,7 +11,7 @@ let loadAllProducts = function() {
    // axios.get("https://fakestoreapi.com/products").
    // then(response=>console.log(response.data)).catch(error=>console.log(error))
    
-   // it is use to store all product in products state variable. 
+   // it is use  store all product in products state variable. 
     axios.get("https://fakestoreapi.com/products").
     then(response=>setProducts(response.data)).catch(error=>console.log(error))
 }

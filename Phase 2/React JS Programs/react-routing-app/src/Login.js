@@ -1,20 +1,36 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 function Login() {
 let [email_id,setEmailId] = useState("");
 let [password,setPassword] = useState("");
+let [logins,setLogins] = useState([]);
 let navigate = useNavigate();
+let url = "http://localhost:3000/logins";
+useEffect(()=> {
+// axios.get(url).then(result=>console.log(result.data)).catch(error=>console.log(error));
+axios.get(url).then(result=>setLogins(result.data)).catch(error=>console.log(error));
+},[])
 let handleSubmit=(event)=>{
     event.preventDefault();
     // here we are checking only one emailId and password but in real time 
     // we check with database using rest api calls with help of axios or fetch api
 
-    if(email_id==="admin@gmail.com" && password==="admin@123"){
-            alert("successfully login")
-            navigate("/home")
+    // if(email_id==="admin@gmail.com" && password==="admin@123"){
+    //         alert("successfully login")
+    //         navigate("/home")
+    // }else {
+    //         alert("failure try once again")
+    // }
+    // it check each email_id and password present in logins array 
+    // if it is present it will return that object otherwise it will return undefined
+    let result = logins.find(ll=>ll.email_id===email_id && ll.password===password); 
+    if(result != undefined){
+        alert("successfully login")
+        navigate("/home")
     }else {
-            alert("failure try once again")
-    }
+        alert("failure try once again")
+    }        
 }
     return(
         <div>

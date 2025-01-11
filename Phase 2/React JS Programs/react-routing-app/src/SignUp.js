@@ -8,7 +8,7 @@ let [logins,setLogins] = useState([]);
 let [msg,setMessage]=useState("");
 let navigate = useNavigate();
 let url = "http://localhost:3000/logins";
-// 1st time it get called and next where any changes happen in msg it get called
+// 1st time it get called and next whenever any changes happen in msg it get called
 
 useEffect(()=> {
 // axios.get(url).then(result=>console.log(result.data)).catch(error=>console.log(error));

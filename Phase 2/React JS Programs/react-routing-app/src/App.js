@@ -6,6 +6,7 @@ import ContactUs from './ContactUs';
 import Feedback from './Feedback';
 import Login from './Login';
 import Dashboard from './Dashboard';
+import SignUp from './SignUp';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/about-us" element={<AboutUs></AboutUs>} />
         <Route path="/contact-us" element={<ContactUs></ContactUs>} />
         <Route path="/feedback" element={<Feedback></Feedback>} />
+        <Route path="/signup" element={<SignUp></SignUp>} />
         <Route path="/home" element={<Dashboard></Dashboard>} />
       </Routes>
     </div>

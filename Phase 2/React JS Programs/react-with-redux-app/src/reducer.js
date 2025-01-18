@@ -1,7 +1,8 @@
 
 let initialState = {
     counter:100,
-    name:"Akash Kale!"
+    name:"Akash Kale!",
+    
 }
 
 function reducer(state=initialState,action){

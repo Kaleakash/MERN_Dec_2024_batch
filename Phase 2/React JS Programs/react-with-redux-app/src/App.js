@@ -1,6 +1,8 @@
 import './App.css';
+import DecrementCounter from './DecrementCouter';
 import DisplayProduct from './DisplayProduct';
 import FirstComponent from './FirstComponent';
+import IncrementCounter from './IncrementCouter';
 import NameComponent from './NameComponent';
 
 function App() {
@@ -9,6 +11,8 @@ function App() {
     <h3>React with Redux App!</h3>
     <FirstComponent></FirstComponent>
     <NameComponent></NameComponent>
+    <IncrementCounter></IncrementCounter>
+    <DecrementCounter></DecrementCounter>
     <DisplayProduct></DisplayProduct>
     </div>
   );

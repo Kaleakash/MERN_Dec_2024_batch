@@ -8,7 +8,6 @@ let initialState = {
         {"pid":3,"pname":"TV","price":30000}
     ]
 }
-
 function reducer(state=initialState,action){
     // base upon action we can do some changes in state variable and return it
     console.log("Reducer called",action);

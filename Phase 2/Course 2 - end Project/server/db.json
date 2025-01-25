@@ -4,6 +4,18 @@
       "emailid": "hr@gmail.com",
       "password": "hr@123",
       "role": "hr"
+    },
+    {
+      "id": "c8af",
+      "emailid": "steven@gmail.com",
+      "password": "steven@123",
+      "role": "employee"
+    },
+    {
+      "id": "a7e5",
+      "emailid": "raj@gmail.com",
+      "password": "123456",
+      "role": "employee"
     }
   ],
   "employees": [
@@ -31,5 +43,8 @@
       "emailid": "leena@gmail.com",
       "dept": "Finance"
     }
+  ],
+  "leaveDetails":[
+    {"id":"abc123","emailid":"steven@gmail.com","numberOfleaves":2,"reason":"sick","status":"pending"}
   ]
 }

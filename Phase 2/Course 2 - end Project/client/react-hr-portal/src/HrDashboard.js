@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function HrDashboard() {
 let [addEmployeeFlag,setEmployeeFlag] = useState(false);
@@ -7,7 +8,8 @@ let [empName,setEmpName] = useState("");
 let [emailid,setEmailid] = useState("");
 let [dept,setDept] = useState("");
 let [employees,setEmployees]=useState([]);
-let [result,setResult]=useState("");  
+let [result,setResult]=useState(""); 
+let navigate  = useNavigate(); 
 useEffect(()=> {
     
     let loadEmployees = async()=> {
@@ -33,9 +35,14 @@ let storeEmployeeInDbFile=async(event)=>{
     console.log(response.data);
     setResult(response.data);
 }
+let logout = ()=> {
+    navigate("/");
+}
     return(
         <div>
+
             <h1>Welcome to Hr Home Page</h1>
+            <input type="button" value="logout" onClick={logout}/><br/>
             <input type="button" value="Add Employee" onClick={addEmployee}/>
         {
             addEmployeeFlag? 

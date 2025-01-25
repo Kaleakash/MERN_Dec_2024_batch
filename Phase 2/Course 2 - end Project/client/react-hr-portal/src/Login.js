@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function Login() {
 let [emailid,setEmailid]=useState("");
 let [password,setPassword]=useState("");
@@ -20,6 +20,7 @@ let handleSubmit=async (event)=> {
             navigate("/hr");
         }else {
             alert("employee login successfully")
+            sessionStorage.setItem("user",emailid);
             navigate("/employee");
         }
     }
@@ -35,9 +36,12 @@ let handleSubmit=async (event)=> {
                 <label>TypeOfUser</label>
                 <input type="radio" name="role" value="hr" onChange={(event)=>setRole(event.target.value)}/>:Hr
                 <input type="radio" name="role" value="employee" onChange={(event)=>setRole(event.target.value)}/>:Employee<br/>
-                <input type="submit" value="SignIn"/>
-                <input type="reset" value="reset"/>
+                <input type="submit" value="SignIn" className="btn btn-success"/>
+                <input type="reset" value="reset" className="btn btn-outline-danger"/>
             </form>
+            
+            <br/>
+            <Link to="/signup">SignUp!</Link>
         </div>
     )
 }

@@ -8,7 +8,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <h2>Welcome Hr Portal App!</h2>
+        <h2 className='Heading'>Welcome Hr Portal App!</h2>
 
         <div>
           <Routes>

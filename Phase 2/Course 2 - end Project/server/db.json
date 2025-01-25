@@ -1,0 +1,35 @@
+{
+  "logins": [
+    {
+      "emailid": "hr@gmail.com",
+      "password": "hr@123",
+      "role": "hr"
+    }
+  ],
+  "employees": [
+    {
+      "id": "b189",
+      "empName": "steven",
+      "emailid": "steven@gmail.com",
+      "dept": "IT"
+    },
+    {
+      "id": "849f",
+      "empName": "Raj",
+      "emailid": "raj@gmail.com",
+      "dept": "Finance"
+    },
+    {
+      "id": "281c",
+      "empName": "john",
+      "emailid": "john@gmail.com",
+      "dept": "Marketing"
+    },
+    {
+      "id": "65bc",
+      "empName": "Leena",
+      "emailid": "leena@gmail.com",
+      "dept": "Finance"
+    }
+  ]
+}

@@ -42,3 +42,15 @@ let num3 = [
 console.log("1st elements is "+num3[0][0][0]);
 console.log("2nd elements is "+num3[0][0][1]);
 console.log("10th elements is "+num3[1][0][0]);
+
+let jaggedArray = [
+    [1, 2, 3],              // 1st row 2 column 
+    [4, 5],                 //2nd row 2 column 
+    [6, 7, 8, 9],           // 3rd row 4 column 
+    [10]                    // 4th row 1 column 
+    ];
+console.log("1st row 1st element "+jaggedArray[0][0]);
+console.log("1st row 2nd element "+jaggedArray[0][1]);
+console.log("1st row 3rd element "+jaggedArray[0][2]);
+console.log("2nd row 1st element "+jaggedArray[1][0]);
+console.log("2nd row 2nd element "+jaggedArray[1][1]);

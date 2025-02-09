@@ -36,6 +36,6 @@ console.log("Any request present in queue "+(customerSupportQueue.isEmpty()?"No 
 console.log("First request in queue is "+customerSupportQueue.peek())
 customerSupportQueue.dequeue();
 customerSupportQueue.dequeue();
-customerSupportQueue.dequeue();
-customerSupportQueue.dequeue();
+//customerSupportQueue.dequeue();
+//customerSupportQueue.dequeue();
 console.log("First request in queue is "+customerSupportQueue.peek())

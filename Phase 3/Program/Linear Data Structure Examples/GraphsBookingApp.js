@@ -11,6 +11,9 @@ class Graph {
             console.log(city+" city already exists in Graph "); 
         }
     }
+    getDirectFlights(city){
+        return this.adjacencyList[city] || []; // Return an empty array if the city does not exist in the graph[
+    }
     // Add the routes
     addRoute(city1, city2,price){
         if(this.adjacencyList[city1] && this.adjacencyList[city2]){
@@ -29,6 +32,9 @@ class Graph {
         //console.log(city)
         }
     }
+    printCityDetails() {
+        console.log(this.adjacencyList)
+    }
 }
 let graph = new Graph(); // Create a new instance of the Graph class
 graph.addCity("Delhi");
@@ -46,4 +52,36 @@ graph.addRoute("Delhi","Mumbai",2050);
 
 graph.addRoute("Bangalore","Mysore",2050);  
 
+graph.printCityDetails();
+
 graph.printRouteDetails();
+console.log("----------------------------------------")
+let bangaloreFlight = graph.getDirectFlights("Bangalore");
+if(bangaloreFlight){
+    if(bangaloreFlight.length==0){
+        console.log("No direct flights available from Bangalore");
+    }else {
+        console.log("Direct flights from Bangalore are: ");
+        bangaloreFlight.forEach((flight)=>{
+            console.log(flight.city+" - Rs."+flight.price);
+        });
+    }
+    
+}else {
+    console.log("No direct flights available from Bangalore");
+}
+console.log("----------------------------------------")
+let mysoreFlight = graph.getDirectFlights("Mysore");
+if(mysoreFlight){
+    if(mysoreFlight.length==0){
+        console.log("No direct flights available from Mysore");
+    }else {
+        console.log("Direct flights from Mysore are: ");
+        mysoreFlight.forEach((flight)=>{
+            console.log(flight.city+" - Rs."+flight.price);
+        });
+    }
+
+}else {
+    console.log("No direct flights available from Mysore");
+}

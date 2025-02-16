@@ -1,3 +1,4 @@
+
 let ss = new Set();
 console.log(ss.size)
 console.log(ss)
@@ -17,3 +18,7 @@ console.log(ss)
 ss.forEach((v)=>console.log(v))
 ss.clear(); // remove all elements 
 console.log(ss.size)
+
+let array = [10,20,30,40,50,50];
+let ss1 = new Set(array);
+console.log(ss1);

@@ -1,17 +1,25 @@
 let fs =require("fs");
-// let emp1 = {id:102,name:"John",age:26};  // literal type object
-// let emp2 = {id:102,name:"John",age:26};  // literal type object
-// let emp3 = {id:102,name:"John",age:26};  // literal type object
-// let employees = [];
-// employees.push(emp1);
-// employees.push(emp2);
-// employees.push(emp3);   
-// let empString = JSON.stringify(employees);
-// fs.writeFileSync("employee.json",empString);
-console.log("Employee details stored in file successfully");
+let emp1 = {id:104,name:"Alice",age:30};  // literal type object
 let empStringFormat = fs.readFileSync("employee.json","utf-8");// string format 
 let employeesJson = JSON.parse(empStringFormat);
-console.log("Number of employees "+employeesJson.length);
+if(employeesJson.length==0){
+    employeesJson.push(emp1);
+    let empString = JSON.stringify(employeesJson);
+    fs.writeFileSync("employee.json",empString);
+    console.log("Employee details stored in file successfully initially");
+}else {
+    let result = employeesJson.find(emp=>emp.id==emp1.id);
+    if(result==undefined){
+        employeesJson.push(emp1);
+        let empString = JSON.stringify(employeesJson);
+        fs.writeFileSync("employee.json", empString);
+        console.log("Employee details stored in file successfully");
+    }else {
+        console.log("Employee id must be unique");
+    }
+}
+console.log("----------------------")
+console.log("All employee details are ");
 employeesJson.forEach(emp => {
     console.log("Id is "+emp.id);
     console.log("Name is "+emp.name);

@@ -1,5 +1,5 @@
 let fs = require("fs");
-let emp = {id:100,name:"Ravi",age:21};  // literal type object 
+let emp = {id:102,name:"John",age:26};  // literal type object 
 console.log("emp in literal format ");
 console.log(emp.id+" "+emp.name+" "+emp.age);
 // convert object to string format 
@@ -11,3 +11,4 @@ let empJson = JSON.parse(empString);  // convert object to json format
 console.log("emp in json format ");
 console.log("emp id "+empJson.id+" emp name "+empJson.name+" emp age "+empJson.age);    
 fs.writeFileSync("emp.txt",empString);    
+//fs.appendFileSync("emp.txt",empString); // append new employee details to existing file

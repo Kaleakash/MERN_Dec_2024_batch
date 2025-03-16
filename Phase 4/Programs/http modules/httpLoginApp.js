@@ -30,11 +30,28 @@ let server = http.createServer((request,response)=> {
         let data = urlRef.query;    // extract query information from url
        // console.log(data);
        // check hard coding emailId and password for login
-       if(data.email == "akash@gmail.com" && data.password=="1234"){
-        response.write("<h1> Successfully login</h1>");
-       }else {
-        response.write("<h1> Failure try once again </h1>");
-       }
+       
+    //    if(data.email == "akash@gmail.com" && data.password=="1234"){
+    //     response.write("<h1> Successfully login</h1>");
+    //    }else {
+    //     response.write("<h1> Failure try once again </h1>");
+    //    }
+
+        // checking emailId and password from login.json file.
+        let loginsStringData = fs.readFileSync("login.json", "utf-8");
+        let logins = JSON.parse(loginsStringData);  // convert string to json object. JSON.parse is used to convert string to json object.
+        let result = logins.find(ll=>ll.email==data.email && ll.password==data.password);
+        if(result!=undefined){
+            response.write("<h1> Successfully login</h1>");
+            response.write("<h3> Welcome user "+result.email+"</h3>");
+            let dashboardPage = fs.readFileSync("dashboard.html");
+            response.write(dashboardPage);
+        }else {
+            response.write("<h1> Failure try once again </h1>");
+            let loginPage = fs.readFileSync("login.html");
+            response.write(loginPage);
+        }
+
         
     }else if(urlRef.pathname == "/signUpPage"){
        

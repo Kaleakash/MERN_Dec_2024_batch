@@ -11,8 +11,14 @@
     <a href="/contact_us">Contact Us</a>|
     <a href="/services">Services</a>|
     <h2>Login Page</h2>
-
-
-  
+    <form action="/SignIn" method="GET">
+        <label>EmailId</label>
+        <input type="email" name="email" required><br>
+        <label>Password</label>
+        <input type="password" name="password" required><br>
+        <input type="submit" value="SignIn">
+        <input type="reset" value="Cancel">
+    </form>
+    <br/>
 </body>
 </html>

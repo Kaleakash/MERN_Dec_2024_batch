@@ -17,6 +17,15 @@ let server = http.createServer((request,response)=> {
     }else if (urlRef.pathname == "/services") {
         let servicePage = fs.readFileSync("services.html"); //readFileSync is used to read the file synchronously
         response.write(servicePage);  
+    }else if(urlRef.pathname == "/SignIn"){
+        let data = urlRef.query;    // extract query information from url
+       // console.log(data);
+       if(data.email == "akash@gmail.com" && data.password=="1234"){
+        response.write("<h1> Successfully login</h1>");
+       }else {
+        response.write("<h1> Failure try once again </h1>");
+       }
+        
     }else {
         let indexPage = fs.readFileSync("index.html"); //readFileSync is used to read the file synchronously
         response.write(indexPage);

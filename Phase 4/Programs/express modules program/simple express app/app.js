@@ -1,7 +1,6 @@
 let express = require('express');           // load the express module 
 let app = express();                    // creating reference of express module
 
-
 // http://localhost:3000/       : it consider as get method. 
 app.get("/", (request, response) => {
     response.send("Welcome to Express JS Application");

@@ -11,8 +11,18 @@
     <a href="login">Login</a>|    
     <a href="/">Back</a>
     <hr/>
-    <h2>Login Page</h2>
+    <h2>Login Page with GET Method</h2>
     <form action="signIn" method="get">
+        <labe>EmailId</labe>
+        <input type="email" name="emailId" required/><br/>
+        <labe>Password</labe>
+        <input type="password" name="password" required/><br/>
+        <input type="submit" value="Login"/>
+        <input type="reset" value="Reset"/>
+    </form>
+    <hr/>
+    <h2>Login Page with POST Method</h2>
+    <form action="signIn" method="post">
         <labe>EmailId</labe>
         <input type="email" name="emailId" required/><br/>
         <labe>Password</labe>

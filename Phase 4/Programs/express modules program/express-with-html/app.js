@@ -31,7 +31,20 @@ app.get("/login", (request, response) => {
     response.sendFile(__dirname + "/login.html");
     });
 
+// http://localhost:3000/sigIn   with get method with hard coding value check the login
 
+app.get("/signIn",(request,response)=> {
+   // console.log(request)                // it hold the request details
+    //console.log(request.query); // hold the query string value or form details 
+    let emailId = request.query.emailId;    // get the value from the query string
+    let password = request.query.password;  // get the value from the query string
+    if(emailId == "admin@gmail.com" && password == "admin@123")
+    {
+        response.send("Login successfully");
+    }else {
+        response.send("Login fail, try once again");
+    }
+})
 
 
 

@@ -1,7 +1,7 @@
 let express = require('express');
 let app = express();
 
-// http://localhost:3000/
+// http://localhost:3000/               this open index.html page 
 
 app.get("/", (request, response) => {
 //res.send("Hello World");              // send response to the client as text 
@@ -11,7 +11,25 @@ app.get("/", (request, response) => {
 response.sendFile(__dirname + "/index.html");
 });
 
+// http://localhost:3000/about_us       this open about_us.html page
+app.get("/about_us", (request, response) => {
+response.sendFile(__dirname + "/about_us.html");
+});
 
+// http://localhost:3000/contact_us       this open contact_us.html page
+app.get("/contact_us", (request, response) => {
+    response.sendFile(__dirname + "/contact_us.html");
+    });
+
+// http://localhost:3000/services       this open service.html page
+app.get("/services", (request, response) => {
+    response.sendFile(__dirname + "/services.html");
+    });
+
+    // http://localhost:3000/login       this open login.html page
+app.get("/login", (request, response) => {
+    response.sendFile(__dirname + "/login.html");
+    });
 
 
 

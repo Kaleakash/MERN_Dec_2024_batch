@@ -1,6 +1,11 @@
 let express = require("express");
 let app = express();
 
+
+
+//middleware
+app.use(express.json());    //extract json data from request body and convert it into json object
+
 // creating product array variable which hold the product details
 let products =[
     {pid:1, name:"Laptop", price: 1000},
@@ -38,13 +43,23 @@ app.get("/findProductByIdUsingPathParam/:pid",(request,response)=>{
     }
 })
 
+// store the product in array variable ie products
+// http://localhost:3000/storeProduct
+// {"pid":4,"name":"Earphone","price":50}
+app.post("/storeProduct",(request,response)=> {
+    let product = request.body; // receive product details from client from request body
+    let result = products.find((p)=>p.pid == product.pid);  // if present it get that product details else it return undefined
+    if(result==undefined){
+         products.push(product);    // store the product details in array variable
+        response.json({"msg":"Product store successfully"});
+    }else {
+        response.json({"msg":"Product id must be unique"});
+    }
+})
+
 app.listen(3000,()=> {
     console.log("Server running on port number 3000");
 })
-
-
-
-
 
 
 

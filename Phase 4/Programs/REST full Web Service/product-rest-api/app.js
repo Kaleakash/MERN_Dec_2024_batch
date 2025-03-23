@@ -15,8 +15,43 @@ app.get("/findProducts",(request,response)=> {
     response.json(products);
 })
 
-
+// search product details using query param with help of pid 
+// http://localhost:3000/findProductByIdUsingQueryParam?pid=1
+app.get("/findProductByIdUsingQueryParam",(request,response)=>{
+    let pid = request.query.pid;   // receive query param value 
+    let result = products.find((p)=>p.pid == pid);  // if present it get that product details else it return undefined
+    if(result==undefined){
+        response.json({"msg":"Product not found"});
+    }else {
+        response.json(result);
+    }
+})
+// search product details using path param with help of pid 
+// http://localhost:3000/findProductByIdUsingPathParam/1    
+app.get("/findProductByIdUsingPathParam/:pid",(request,response)=>{
+    let pid = request.params.pid;   // receive path param value
+    let result = products.find((p)=>p.pid == pid);  // if present it get that product details else it return undefined
+    if(result==undefined){
+        response.json({"msg":"Product not found"});
+    }else {
+        response.json(result);
+    }
+})
 
 app.listen(3000,()=> {
     console.log("Server running on port number 3000");
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+

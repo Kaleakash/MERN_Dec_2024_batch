@@ -57,6 +57,21 @@ app.post("/storeProduct",(request,response)=> {
     }
 })
 
+
+// delete the product using pid with help of path param concept 
+// http://localhost:3000/deleteProductByPid/2
+
+app.delete("/deleteProductByPid/:pid",(request,response)=>{
+    let pid = request.params.pid;   // receive path param value
+    let index = products.findIndex((p)=>p.pid == pid);  // if present it get that product details else it return undefined
+    if(index == -1){
+        response.json({"msg":"Product not present with this id "+pid});
+    }else {
+        products.splice(index,1);       //1st parameter index position and 2nd parameter number of element or record need to delete
+        response.json({"msg":"Product deleted successfully"});
+    }
+})
+
 app.listen(3000,()=> {
     console.log("Server running on port number 3000");
 })

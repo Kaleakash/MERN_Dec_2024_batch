@@ -43,7 +43,7 @@ app.post("/SignIn",(req,res)=> {
 // get the value from signup.html page and check email and password is correct or not from array
 // if present don't create the account else store data in array variable. 
 app.post("/SignUp",(req,res)=> {
-    let login = req.body;
+    let login = req.body;           // get the value from signup.html page
     let result = logins.find(l=>l.email==login.email);
     if(result==undefined){
         logins.push(login);         // we store new login details in array variable. 

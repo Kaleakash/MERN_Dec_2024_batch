@@ -37,9 +37,24 @@ app.post("/storeProduct",async (req,res)=> {
     res.json({"msg":result});
     }catch(error){
         res.json({"msg":error});
-    }
-    
+    }    
 });
+
+// find the all product information from the database
+// http://localhost:3000/findProduct
+
+app.get("/findProduct",async (req, res)=> {
+    try{
+    let result = await db.collection("product").find().toArray(); // find all documents in the product collection
+    // let result = await db.collection("product").find().forEach((doc)=>{
+    //     console.log(doc);       // display result on console server side 
+    // })
+    res.json(result);
+    }catch(error){
+        res.json({"msg":error});
+    }
+})
+
 
 
 app.listen(3000, () => {

@@ -2,6 +2,9 @@ let express = require("express");   // load the express module
 let mongoDb = require("mongodb");   // load the mongodb module
 let app = express();                // create an express application    
 
+// middleware to parse JSON data from the request body
+app.use(express.json()); // parse JSON data from the request body
+
 // database URL 
 let url ="mongodb://localhost:27017"; // URL to connect to the database, 27017 is the default port for MongoDB
 let dbName = "product_db"; // name of the database to connect to
@@ -20,6 +23,23 @@ catch(error=>
         console.log(error);
 }); 
 // connect to the database and catch any errors
+
+// store the production information in product_db collection 
+// http://localhost:3000/storeProduct
+// data format :{_id:1,name:"TV","price":1000,"quantity":10}
+
+app.post("/storeProduct",async (req,res)=> {
+    try{
+    let newProduct = req.body; // get the product information from the request body
+    console.log(newProduct); // log the product information to the console
+    //res.send("done")
+    let result = await db.collection("product").insertOne(newProduct);  // db.product.insertOne(newProduct) // insert the product information into the product collection
+    res.json({"msg":result});
+    }catch(error){
+        res.json({"msg":error});
+    }
+    
+});
 
 
 app.listen(3000, () => {

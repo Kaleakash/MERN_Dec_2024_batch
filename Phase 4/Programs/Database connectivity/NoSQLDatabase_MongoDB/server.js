@@ -55,7 +55,26 @@ app.get("/findProduct",async (req, res)=> {
     }
 })
 
+// search the product information base upon product id 
+// http://localhost:3000/findProduct/1
+// http://localhost:3000/findProduct/100
 
+app.get("/findProduct/:id",async(req,res)=> {
+    try{
+        let pid = req.params.id;    // string consider as a string
+        let result = await db.collection("product").findOne({_id:Number(pid)});
+       // let result = await db.collection("product").find({_id:Number(pid)}).toArray() 
+       // res.json(result);
+       if(result==null){
+            res.json({"msg":"product not found"}); // if product not found, send a message to the client    
+
+       }else {
+            res.json(result); // if product found, send the product information to the client
+       }
+    }catch(error){
+        res.json({"msg":error});
+    }
+});
 
 app.listen(3000, () => {
     console.log("Server running at port 3000");

@@ -94,6 +94,28 @@ try{
     res.json({"msg":error});    
 }
 })
+// update the product information using product id ie _id
+// http://localhost:3000/updateProduct/1
+
+app.put("/updateProduct/:id",async (req,res)=> {
+    try{
+     let pid = req.params.id;
+     let toUpdateNewProduct = req.body;
+     let result = await db.collection("product").
+     updateOne({_id:Number(pid)},{$set:toUpdateNewProduct});  
+     //res.json({msg:result}); // send the result of the update operation to the client
+    if(result.modifiedCount==1){
+        res.json({"msg":"product updated successfully"});
+    }else if(result.matchedCount==1){
+        res.json({"msg":"product present, but didn't update because old and new data are same"});
+    }else {
+        res.json({"msg":"product not found"}); // if product not found, send a message to the client    
+
+    }
+    }catch(error){
+        res.json({"msg":error});
+    }
+});
 
 app.listen(3000, () => {
     console.log("Server running at port 3000");

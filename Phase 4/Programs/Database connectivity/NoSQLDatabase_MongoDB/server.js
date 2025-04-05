@@ -76,6 +76,25 @@ app.get("/findProduct/:id",async(req,res)=> {
     }
 });
 
+// delete the product information from the database using product id ie _id 
+// http://localhost:3000/deleteProduct/1
+// http://localhost:3000/deleteProduct/100
+
+app.delete("/deleteProduct/:id",async (req,res)=> {
+try{
+    let pid = req.params.id; // get the product id from the request parameters
+    let result = await db.collection("product").deleteOne({_id:Number(pid)});
+    //res.json({"msg":result}); // send the result of the delete operation to the client  
+    if(result.deletedCount==1){
+        res.json({"msg":"product deleted successfully"});
+    }else{
+        res.json({"msg":"product not found"});
+    }
+}catch(error){
+    res.json({"msg":error});    
+}
+})
+
 app.listen(3000, () => {
     console.log("Server running at port 3000");
 });

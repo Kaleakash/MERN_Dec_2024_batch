@@ -21,6 +21,5 @@ let productSchema = mongoose.Schema({   // _id,pname,price,quantity(0),descripti
 // using schema create a model
 let productModel = mongoose.model("products",productSchema);    // products is the collection name in MongoDB
 
-module.exports = {
-    productModel
-}   
+module.exports = productModel
+   

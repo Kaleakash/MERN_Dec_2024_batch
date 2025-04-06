@@ -11,7 +11,16 @@ let storeProduct = async (req, res) => {
     }
 }
 
+let findAllProducts = async (req, res) => {
+    try{
+        let products = await productService.findAllProducts();
+        res.json(products);
+    }catch(error){
+        console.log("Error in fetching products", error);
+        res.json({"msg":error.message});
+    }
+}
 
 module.exports = {
-    storeProduct
+    storeProduct,findAllProducts
 }

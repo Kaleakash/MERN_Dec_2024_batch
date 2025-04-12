@@ -2,21 +2,18 @@ let productRepository = require("../repositories/products.repository");
 
 let storeProduct = async (product) => {
     // business logic for storing product
-    try{
+
         if(product.price < 0){
             return "Price cannot be negative";
         }else {
             let result = await productRepository.storeProduct(product);
             return result;
         }
-    }catch(error){
-        console.log("Error in storing product", error);
-        return "Error in storing product "+error.message;
-    }
+
 }
 // in service class we can call more than one repository function with condition. 
 let findAllProducts = async ()=> {
-    try{
+ 
         // business logic for fetching all products
         // returning all products from the repository
         // let products = await productRepository.findAllProducts();
@@ -31,25 +28,16 @@ let findAllProducts = async ()=> {
         })
         return discountProducts;
 
-    }catch(error){
-        console.log("Error in fetching products", error);
-        return "Error in fetching products "+error.message;
-    }
+ 
 }
 
 let findProductById = async (pid)=> {
-    try{
-    let product = await productRepository.findProductById(pid);
+     let product = await productRepository.findProductById(pid);
     return product;
-    }catch(error){
-        console.log("Error in search the product", error);
-        return "Error in search product in service layer "+error.message;
-    }
-}
+ }
 
 let findProductByPriceUsingRange = async(minPrice,maxPrice)=> {
-    try{
-        if(minPrice < 0 || maxPrice < 0){
+         if(minPrice < 0 || maxPrice < 0){
             return "Price cannot be negative";
         }else if(minPrice > maxPrice){
             return "Minimum price cannot be greater than maximum price";
@@ -58,11 +46,37 @@ let findProductByPriceUsingRange = async(minPrice,maxPrice)=> {
             let products = await productRepository.findAllProductsPriceRange(minPrice, maxPrice);
             return products
         }
-    }catch(error){
-        console.log("Error in search the product with price range", error);
-        return "Error in search product in service layer with price range "+error.message;
+ }
+
+let deleteProductById = async(pid)=> {
+    
+        let product = await productRepository.deleteProductById(pid);
+        console.log("Product in service", product);
+        return product;
+   
+}
+
+let updateProductPrice = async (pid,newPrice)=> {
+    // find the product details using pid
+    let oldProduct = await productRepository.findProductById(pid);
+    //console.log("Old product in service", oldProduct.price);
+    //console.log("New product in service", newPrice);
+    if(oldProduct){
+            if(newPrice > oldProduct.price){
+                let result = await productRepository.updateProductPrice(pid,newPrice);
+                if(result.modifiedCount > 0){
+                    return "Product price updated successfully";
+                }else {
+                    return "Product not found";
+                }     
+            }else {
+                return "New price should be greater than old price";
+            }
+    }else {
+        return "Product not found";
     }
 }
+// in service class we can call more than one repository function with condition.
 module.exports = {
-    storeProduct,findAllProducts,findProductById,findProductByPriceUsingRange
+    storeProduct,findAllProducts,findProductById,findProductByPriceUsingRange,deleteProductById,updateProductPrice
 }

@@ -2,50 +2,49 @@ let productModel = require('../models/products.models');        // ES5 style imp
 let mongoose = require('mongoose');
 // this file contains more than one function with pure database logic. 
 let storeProduct = async (product) => {
-    try{
     let newProduct = new productModel(product);
     let result = await newProduct.save();
     return result;
-    }catch(error){
-        console.log("Error in storing product", error);
-        return "Error in storing product "+error.message;
-    }
 }
 
 let findAllProducts = async ()=> {
-    try{
-        let products = await productModel.find();  // find() pre defined method in mongoose to find all documents in a collection
-        
+    
+        let products = await productModel.find();  // find() pre defined method in mongoose to find all documents in a collectio    
         return products;
-    }catch(error){
-        console.log("Error in fetching products", error);
-        return "Error in fetching products "+error.message;
-    }
+ 
 }
 
 let findProductById = async (pid)=> {
-    try{
+ 
     let p_id = new mongoose.Types.ObjectId(pid); // convert string to ObjectId
     let product = await productModel.findById(p_id); // findById() pre defined method in mongoose to find a document by id
     return product;
-    }catch(error){
-        console.log("Error in search products", error);
-        return "Error in search products "+error.message;
-    }
+ 
 }
 
 let findAllProductsPriceRange = async (minPrice,maxPrice)=> {
-    try{
-        let products = await productModel.find({$and:[{price:{$gte:minPrice}},{price:{$lte:maxPrice}}]});  // find() pre defined method in mongoose to find all documents in a collection
-        
-        return products;
-    }catch(error){
-        console.log("Error in search the product with price range", error);
-        return "Error in search product in service layer with price range "+error.message;
-    }
+    let products = await productModel.find({$and:[{price:{$gte:minPrice}},{price:{$lte:maxPrice}}]});  // find() pre defined method in mongoose to find all documents in a collection
+    return products;
+    
 }
 
+let deleteProductById = async(pid)=> {
+        let p_id = new mongoose.Types.ObjectId(pid); // convert string to ObjectId
+        let product = await productModel.findByIdAndDelete(p_id); // findByIdAndDelete() pre defined method in mongoose to delete a document by id
+       // let product = await productModel.deleteOne({_id:p_id});
+       //let product = await productModel.deleteMany({price:price})
+        return product;
+}
+
+let updateProductPrice = async (pid,newPrice)=> {
+    let p_id = new mongoose.Types.ObjectId(pid); // convert string to ObjectId
+    let result = await productModel.updateOne({_id:p_id},{$set:{price:newPrice}}); // updateOne() pre defined method in mongoose to update a document by id
+    //let result = await productModel.updateMany({name:nameValue},{$set:{price:newPrice}}); // updateOne() pre defined method in mongoose to update a document by id
+    return result;
+}
+
+// export the module....
 module.exports = {
-    storeProduct,findAllProducts,findProductById,findAllProductsPriceRange
+    storeProduct,findAllProducts,findProductById,findAllProductsPriceRange,deleteProductById,updateProductPrice
 }
 

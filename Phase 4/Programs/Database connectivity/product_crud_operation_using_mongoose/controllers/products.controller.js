@@ -17,7 +17,7 @@ let findAllProducts = async (req, res) => {
         let products = await productService.findAllProducts();
         res.json(products);
     }catch(error){
-        console.log("Error in fetching products", error);
+        
         res.json({"msg":error.message});
     }
 }
@@ -33,7 +33,7 @@ let searchProductById = async(req,res)=> {
             res.json({"msg":"Product not found"});
         }   
     }catch(error){
-        console.log("Error in search product", error);
+        
         res.json({"msg":error.message});
     }
 }
@@ -49,10 +49,36 @@ let findProductByPriceRange = async(req,res)=> {
             res.json({"msg":"Product not found"});
         }
     }catch(error){
-        console.log("Error in search product with price range", error);
         res.json({"msg":error.message});  
     }
 }
+
+let deleteProductById = async(req,res)=> {
+    try{
+        let pid = req.params.pid;        
+        let result = await productService.deleteProductById(pid);
+        if(result){
+            res.json({"msg":"Product deleted successfully"});   
+        }else {
+            res.json({"msg":"Product not found"});
+        }
+    }catch(error){
+        
+        res.json({"msg":error.message});  
+    }
+}
+
+let updateProductPrice = async (req,res)=> {
+    try{
+        let pid = req.params.pid;
+        let newPrice = req.body.price; // Get new price from request body
+        let result = await productService.updateProductPrice(pid,newPrice);
+        res.json({"msg":result}); 
+        
+    }catch(error){
+        res.json({"msg":error.message});
+    }
+}
 module.exports = {
-    storeProduct,findAllProducts,searchProductById,findProductByPriceRange
+        storeProduct,findAllProducts,searchProductById,findProductByPriceRange,updateProductPrice,deleteProductById
 }

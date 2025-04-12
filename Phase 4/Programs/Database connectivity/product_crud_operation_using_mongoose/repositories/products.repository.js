@@ -33,7 +33,19 @@ let findProductById = async (pid)=> {
         return "Error in search products "+error.message;
     }
 }
+
+let findAllProductsPriceRange = async (minPrice,maxPrice)=> {
+    try{
+        let products = await productModel.find({$and:[{price:{$gte:minPrice}},{price:{$lte:maxPrice}}]});  // find() pre defined method in mongoose to find all documents in a collection
+        
+        return products;
+    }catch(error){
+        console.log("Error in search the product with price range", error);
+        return "Error in search product in service layer with price range "+error.message;
+    }
+}
+
 module.exports = {
-    storeProduct,findAllProducts,findProductById 
+    storeProduct,findAllProducts,findProductById,findAllProductsPriceRange
 }
 

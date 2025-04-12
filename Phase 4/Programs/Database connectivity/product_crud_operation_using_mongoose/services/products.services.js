@@ -46,6 +46,23 @@ let findProductById = async (pid)=> {
         return "Error in search product in service layer "+error.message;
     }
 }
+
+let findProductByPriceUsingRange = async(minPrice,maxPrice)=> {
+    try{
+        if(minPrice < 0 || maxPrice < 0){
+            return "Price cannot be negative";
+        }else if(minPrice > maxPrice){
+            return "Minimum price cannot be greater than maximum price";
+
+        }else {
+            let products = await productRepository.findAllProductsPriceRange(minPrice, maxPrice);
+            return products
+        }
+    }catch(error){
+        console.log("Error in search the product with price range", error);
+        return "Error in search product in service layer with price range "+error.message;
+    }
+}
 module.exports = {
-    storeProduct,findAllProducts,findProductById
+    storeProduct,findAllProducts,findProductById,findProductByPriceUsingRange
 }

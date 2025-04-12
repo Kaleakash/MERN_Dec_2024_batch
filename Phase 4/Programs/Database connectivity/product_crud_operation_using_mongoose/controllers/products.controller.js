@@ -38,6 +38,21 @@ let searchProductById = async(req,res)=> {
     }
 }
 
+let findProductByPriceRange = async(req,res)=> {
+    try{
+        let minPrice = eval(req.params.minPrice);       // converting string to number 
+        let maxPrice = eval(req.params.maxPrice);    // converting string to number
+        let products = await productService.findProductByPriceUsingRange(minPrice, maxPrice);
+        if(products.length > 0){
+            res.json(products);
+        }else{
+            res.json({"msg":"Product not found"});
+        }
+    }catch(error){
+        console.log("Error in search product with price range", error);
+        res.json({"msg":error.message});  
+    }
+}
 module.exports = {
-    storeProduct,findAllProducts,searchProductById
+    storeProduct,findAllProducts,searchProductById,findProductByPriceRange
 }

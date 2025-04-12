@@ -14,7 +14,7 @@ let storeProduct = async (product) => {
         return "Error in storing product "+error.message;
     }
 }
-
+// in service class we can call more than one repository function with condition. 
 let findAllProducts = async ()=> {
     try{
         // business logic for fetching all products
@@ -37,6 +37,15 @@ let findAllProducts = async ()=> {
     }
 }
 
+let findProductById = async (pid)=> {
+    try{
+    let product = await productRepository.findProductById(pid);
+    return product;
+    }catch(error){
+        console.log("Error in search the product", error);
+        return "Error in search product in service layer "+error.message;
+    }
+}
 module.exports = {
-    storeProduct,findAllProducts
+    storeProduct,findAllProducts,findProductById
 }

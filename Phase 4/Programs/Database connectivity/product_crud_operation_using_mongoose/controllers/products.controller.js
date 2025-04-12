@@ -1,3 +1,4 @@
+const req = require("express/lib/request");
 let productService = require("../services/products.services");
 
 let storeProduct = async (req, res) => {
@@ -21,6 +22,22 @@ let findAllProducts = async (req, res) => {
     }
 }
 
+let searchProductById = async(req,res)=> {
+    try{
+        let pid = req.params.pid;
+        console.log("Product id is in controller ", pid);
+        let product = await productService.findProductById(pid);
+        if(product){
+            res.json(product);
+        }else{
+            res.json({"msg":"Product not found"});
+        }   
+    }catch(error){
+        console.log("Error in search product", error);
+        res.json({"msg":error.message});
+    }
+}
+
 module.exports = {
-    storeProduct,findAllProducts
+    storeProduct,findAllProducts,searchProductById
 }

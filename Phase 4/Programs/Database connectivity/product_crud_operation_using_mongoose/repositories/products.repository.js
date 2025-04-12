@@ -1,5 +1,6 @@
-let productModel = require('../models/products.models');
-
+let productModel = require('../models/products.models');        // ES5 style import of productModel
+let mongoose = require('mongoose');
+// this file contains more than one function with pure database logic. 
 let storeProduct = async (product) => {
     try{
     let newProduct = new productModel(product);
@@ -22,6 +23,17 @@ let findAllProducts = async ()=> {
     }
 }
 
-module.exports = {
-    storeProduct,findAllProducts 
+let findProductById = async (pid)=> {
+    try{
+    let p_id = new mongoose.Types.ObjectId(pid); // convert string to ObjectId
+    let product = await productModel.findById(p_id); // findById() pre defined method in mongoose to find a document by id
+    return product;
+    }catch(error){
+        console.log("Error in search products", error);
+        return "Error in search products "+error.message;
+    }
 }
+module.exports = {
+    storeProduct,findAllProducts,findProductById 
+}
+

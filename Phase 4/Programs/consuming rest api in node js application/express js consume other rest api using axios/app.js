@@ -2,6 +2,7 @@ let express = require("express");
 let axios = require("axios");
 
 let app = express();
+let products;
 
 // http://localhost:3000
 
@@ -11,18 +12,18 @@ app.get("/",(req,res)=> {
 // http://localhost:3000/products
 
 app.get("/products", async (req, res) => {
-    let response = await axios.get("https://fakestoreapi.com/products");
-    let products = response.data;
+    //let response = await axios.get("https://fakestoreapi.com/products");
+    //let products = response.data;
     res.json(products);
 })
 // http://localhost:3000/findProduct/100
 
 app.get("/findProduct/:pid", async (req, res) => {
-    let response = await axios.get("https://fakestoreapi.com/products");
-    let products = response.data;
+    //let response = await axios.get("https://fakestoreapi.com/products");
+    //let products = response.data;
 
     let pid = req.params.pid;
-    
+
     let product = products.find(p=>p.id ==pid);
     if(product==undefined){
         res.send("Product not found");
@@ -32,6 +33,9 @@ app.get("/findProduct/:pid", async (req, res) => {
 })
 
 
-app.listen(3000, () => {
+app.listen(3000, async () => {
     console.log("Server running on port 3000");
+    let response = await axios.get("https://fakestoreapi.com/products");
+    products = response.data;
+    console.log("All product data fetched from API "+products.length);
    });  

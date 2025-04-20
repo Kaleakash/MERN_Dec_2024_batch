@@ -1,7 +1,8 @@
 let usersModel = require("../models/users.models"); // ES5 style import of usersModel
 
 let signIn = async (user)=> {
-
+    let existingUser = await usersModel.findOne({email:user.email});
+    return existingUser;
 }
 
 
@@ -17,6 +18,6 @@ let signUp = async(user)=> {        // email, password, role (default role is cu
 }
 
 module.exports = {
-    signUp
+    signUp,signIn
 }
 

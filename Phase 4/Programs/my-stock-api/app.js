@@ -21,7 +21,8 @@ app.get("/findStockDetails/:symbol", (req, res) => {
 
 app.listen(8080, async () => {
     console.log("Server is running on port 8080");
-    let response = await axios.get("http://localhost:3001/stock");
+    let url ="https://finnhub.io/api/v1/stock/symbol?exchange=US&token=tokenValue"; // replace tokenValue with your token value
+    let response = await axios.get(url);
     stocks = response.data;
     console.log("Stocks data fetched from server:", stocks.length, "stocks");
 })

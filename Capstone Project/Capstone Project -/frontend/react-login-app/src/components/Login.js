@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { signIn } from "../service/LoginService";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function Login() {
+
 let [email,setEmail] = useState('');
 let [password,setPassword] = useState('');
 let [role,setRole] = useState('');
 let [errorMsg,setErrorMsg] = useState(''); 
+
 let navigate = useNavigate(); 
+
 let SigInLogic = async (event)=> {
     event.preventDefault();
     let user = {email,password,role}
@@ -40,6 +43,8 @@ return(
             <input type="submit" value="SignIn"/>
             <input type="reset" value="reset"/>
         </form>
+        <br/>
+        <Link to="/signup">Register</Link>
     </div>
 )
 
